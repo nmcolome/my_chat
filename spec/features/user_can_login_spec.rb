@@ -1,27 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe "a user can login" do
-  xit "with valid credentials" do
+  it "with valid credentials" do
     user = User.create(username: "test_user", password: "password")
 
     visit "/"
     click_on "Login"
 
-    fill_in :username, with: "test_user"
-    fill_in :password, with: "password"
+    fill_in "Username", with: "test_user"
+    fill_in "Password", with: "password"
     click_on "Login"
 
     expect(current_path).to eq("/")
   end
 
-  xit "with invalid credentials" do
+  it "with invalid credentials" do
     user = User.create(username: "test_user", password: "password")
 
     visit "/"
     click_on "Login"
 
-    fill_in :username, with: "wrong"
-    fill_in :password, with: "wrong"
+    fill_in "Username", with: "wrong"
+    fill_in "Password", with: "wrong"
     click_on "Login"
 
     expect(current_path).to eq("/login")
