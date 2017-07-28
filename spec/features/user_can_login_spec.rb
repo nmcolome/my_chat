@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "a user can login" do
-  it "with valid credentials" do
+  xit "with valid credentials" do
     user = User.create(username: "test_user", password: "password")
 
     visit "/"
@@ -14,7 +14,7 @@ RSpec.describe "a user can login" do
     expect(current_path).to eq("/")
   end
 
-  it "with invalid credentials" do
+  xit "with invalid credentials" do
     user = User.create(username: "test_user", password: "password")
 
     visit "/"
