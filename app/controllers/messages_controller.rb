@@ -1,7 +1,12 @@
 class MessagesController < ApplicationController
   def create
-    @message = current_user.messages.create(message_params)
-    redirect_to private_chat_path(params[:message][:private_chat_id])
+    message = current_user.messages.build(message_params)
+    if message.save
+      ActionCable.server.broadcast "room_channel_#{message.private_chat_id}", 
+                                  content: message.content,
+                                  user: message.user.username
+      head :ok
+    end
   end
 
   private

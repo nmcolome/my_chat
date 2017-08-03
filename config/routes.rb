@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :private_chats, only: [:new, :create, :show, :index]
   resources :messages, only: [:create]
+
+  mount ActionCable.server, at: '/cable'
 end
