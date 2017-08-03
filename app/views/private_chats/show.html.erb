@@ -1,2 +1,6 @@
 <% @participants.delete(current_user.username) %>
 <h4>This is the beginning of your private conversation with <%= @participants.join(", ") %></h4>
+
+<div class="container">
+  <%= render partial: "messages/form" %>
+</div>
