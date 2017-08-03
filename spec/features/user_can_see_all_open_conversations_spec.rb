@@ -7,6 +7,7 @@ RSpec.describe "User sees all open conversations" do
     chat = PrivateChat.create(participant_ids: ["#{user.id}", "#{user2.id}"])
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
+    visit "/"
     click_on "My Chats"
 
     expect(current_path).to eq(private_chats_path)
@@ -19,9 +20,10 @@ RSpec.describe "User sees all open conversations" do
     chat = PrivateChat.create(participant_ids: ["#{user.id}", "#{user2.id}"])
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user2)
 
+    visit "/"
     click_on "My Chats"
 
     expect(current_path).to eq(private_chats_path)
-    expect(page).to have_content("#{user1.username}")
+    expect(page).to have_content("#{user.username}")
   end
 end
