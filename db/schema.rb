@@ -10,10 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728041654) do
+ActiveRecord::Schema.define(version: 20170803052248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "private_chats", force: :cascade do |t|
+    t.string "participant_ids", default: [], array: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
