@@ -8,7 +8,7 @@ RSpec.describe "A user sends a message" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit private_chat_path(chat)
-    fill_in :message, with: "Hello World!"
+    fill_in "message[content]", with: "Hello World!"
     click_on "Send"
 
     expect(current_path).to eq(private_chat_path(chat))

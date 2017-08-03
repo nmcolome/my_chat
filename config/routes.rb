@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :private_chats, only: [:new, :create, :show]
+  resources :messages, only: [:create]
 end
