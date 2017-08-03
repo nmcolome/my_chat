@@ -1,4 +1,6 @@
 class PrivateChat < ApplicationRecord
+  has_many :messages
+
   before_save :canonicalize_ids
 
   def canonicalize_ids
