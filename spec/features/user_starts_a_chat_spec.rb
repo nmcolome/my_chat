@@ -7,11 +7,10 @@ RSpec.describe "a user starts a conversation" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit "/"
-    click_on "Chat"
-    fill_in :search, with: "#{user2.username}"
-    click_on "Add"
+    click_on "Open a private chat"
+    select "#{user2.username}", from: "participant_ids[]"
     click_on "Go"
 
-    expect(current_path).to eq(private_chat_path)
+    expect(page).to have_content("This is the beginning of your private conversation with #{user2.username}")
   end
 end
