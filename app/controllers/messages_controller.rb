@@ -2,10 +2,13 @@ class MessagesController < ApplicationController
   def create
     message = current_user.messages.build(message_params)
     if message.save
-      ActionCable.server.broadcast "room_channel_#{message.private_chat_id}", 
-                                  content: message.content,
-                                  user: message.user.username
-      head :ok
+
+      ActionCable.server.broadcast(
+        "room_channel_#{message.private_chat_id}",
+        private_chat_id: message.private_chat_id,
+        content: message.content,
+        username: message.user.username
+      )
     end
   end
 

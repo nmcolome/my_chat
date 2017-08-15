@@ -1,12 +1,20 @@
+$(document).on 'turbolinks:load', ->
+  private_chat_id = $("#message_private_chat_id").val()
 
-App.room = App.cable.subscriptions.create {channel: "RoomChannel",
-                                          private_chat_id: room.data("private_conversation_id")}
+  App.room = App.cable.subscriptions.create {
+    channel: "RoomChannel"
+    private_chat_id: private_chat_id
+  },
+
   connected: ->
-    # Called when the subscription is ready for use on the server
-
   disconnected: ->
-    # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    # Called when there's incoming data on the websocket for this channel
-    alert data.content
+    $('#messages-table').append(
+      """
+      <div class="message">
+        <p>#{data.username}<br>
+        #{data.content}</p>
+      </div>
+      """
+    )
