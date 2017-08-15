@@ -2,11 +2,13 @@
 <h4>This is the beginning of your private conversation with <%= @participants.join(", ") %></h4>
 
 <div class="container">
-  <% @private_chat.messages.each do |message| %>
-    <div>
-      <p><%= message.user.username %> <%= message.created_at.strftime("%l:%M %p") %><br>
-      <%= message.content %></p>
-    </div>
-  <% end %>
+  <div id="messages-table">
+    <% @private_chat.messages.each do |message| %>
+      <div class="message">
+        <p><%= message.user.username %><br>
+        <%= message.content %></p>
+      </div>
+    <% end %>
+  </div>
   <%= render partial: "messages/form" %>
 </div>
