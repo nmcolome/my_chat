@@ -1,4 +1,4 @@
-<%= form_for Message.new, method: :post do |f| %>
+<%= form_for Message.new, method: :post, remote: true, authenticity_token: true, class: "message_form" do |f| %>
   <%= f.text_field :content, placeholder: "Message" %>
   <%= f.hidden_field :private_chat_id, value: "#{params[:id]}" %>
   <%= f.submit "Send" %>
